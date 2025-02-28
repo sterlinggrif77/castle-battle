@@ -18,7 +18,6 @@ const displayStatus = function() {
 };
 
 const createPeon = function() {
-  clearConsole();
   let name = prompt("Enter peon name: ");
   playerBarracks.push({ name: name, job: "nothing" });
   console.log(`✅ ${name} has been added to your barracks!\n`);
@@ -36,15 +35,12 @@ const selectPeon = function() {
   let peon = playerBarracks.find((p) => p.name === peonName);
   if (peon) {
     while (true) {
-      clearConsole();
       displayStatus();
       console.log("=======================================");
       console.log(`🔧 Choose job for ${peon.name.toUpperCase()}`);
       console.log("1: ⚔️ Attack");
       console.log("2: 🏥 Repair");
       console.log("3: 🔙 Back");
-      console.log("\nChoose ( 1 / 2 / 3): ")
-      console.log("=======================================");
       let job = parseInt(prompt("Choose Option: (1 / 2 / 3): ")) - 1;
       let jobs = ["attack", "repair"];
       if (job === 2) {
@@ -83,7 +79,6 @@ const processPeonActions = function() {
 };
 
 const computerTurn = function() {
-  clearConsole();
   let damageOrHeal = Math.random() < 0.5 ? "damage" : "heal";
   let amount = Math.floor(Math.random() * 5) + 1;
   if (damageOrHeal === "damage") {
@@ -114,19 +109,13 @@ const gameLoop = function() {
   while (true) {
     clearConsole();
     displayStatus();
-
-    if (checkGameOver()) return; // ✅ Stop the game if over
-
+    if (checkGameOver()) return;
     console.log("=======================================");
     console.log("            PLAYER'S TURN              ");
     console.log("=======================================");
     console.log("1: 👷 Create peon");
     console.log("2: 🎯 Choose peon");
-    console.log("\nChoose ( 1 / 2): ")
-
-    console.log("=======================================");
     let choice = parseInt(prompt("Choose option: (1 / 2): "));
-    
     if (choice === 1) {
       createPeon();
     } else if (choice === 2) {
