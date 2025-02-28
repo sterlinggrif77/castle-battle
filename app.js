@@ -35,7 +35,6 @@ const selectPeon = function() {
   let peon = playerBarracks.find((p) => p.name === peonName);
   if (peon) {
     while (true) {
-      displayStatus();
       console.log("=======================================");
       console.log(`🔧 Choose job for ${peon.name.toUpperCase()}`);
       console.log("1: ⚔️ Attack");
@@ -50,9 +49,9 @@ const selectPeon = function() {
         console.log(`✅ ${peon.name} is now assigned to ${peon.job.toUpperCase()}\n`);
         processPeonActions();
         if (checkGameOver()) return;
-        console.log("=======================================");
+        console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         console.log("           COMPUTER'S TURN             ");
-        console.log("=======================================");
+        console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         computerTurn();
         if (checkGameOver()) return;
       } else {
@@ -69,13 +68,12 @@ const processPeonActions = function() {
   playerBarracks.forEach(peon => {
     if (peon.job === "repair") {
       playerHp += 1;
-      console.log(`🔧 ${peon.name} repaired you! 🛡️  Player HP: ${"❤ ".repeat(Math.max(0, playerHp)).trim()}\n`);
+      console.log(`🔧 ${peon.name}🛡️ repaired!  Player HP: ${"❤ ".repeat(Math.max(0, playerHp)).trim()}\n`);
     } else if (peon.job === "attack") {
       computerHp -= 1;
       console.log(`⚔️  ${peon.name} attacked the computer! 🤖 Computer HP: ${"❤ ".repeat(Math.max(0, computerHp)).trim()}\n`);
     }
   });
-  displayStatus();
 };
 
 const computerTurn = function() {
